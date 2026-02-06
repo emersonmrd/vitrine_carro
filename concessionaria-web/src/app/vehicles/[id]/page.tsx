@@ -3,7 +3,7 @@ import { Vehicle } from "@/types/showcase";
 import Link from "next/link";
 
 async function getVehicle(id: string): Promise<Vehicle | null> {
-  const res = await fetch(`http://localhost:3002/vehicles/${id}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/vehicles/${id}`, {
     cache: "no-store",
   });
 
@@ -15,9 +15,9 @@ async function getVehicle(id: string): Promise<Vehicle | null> {
 export default async function VehicleDetailPage({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: { id: string };
 }) {
-  const { id } = await params;
+  const { id } = params;
 
   const vehicle = await getVehicle(id);
 
