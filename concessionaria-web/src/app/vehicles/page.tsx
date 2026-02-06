@@ -6,13 +6,15 @@ import VehicleFilters from "@/components/VehicleFilters";
 import { Vehicle } from "@/types/showcase";
 import { useEffect, useState } from "react";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL!;
+
 export default function VehiclesPage() {
   const [vehicles, setVehicles] = useState<Vehicle[]>([]);
   const [filteredVehicles, setFilteredVehicles] = useState<Vehicle[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:3002/vehicles")
+    fetch(`${API_URL}/vehicles`)
       .then((res) => res.json())
       .then((data) => {
         setVehicles(data);
