@@ -15,9 +15,9 @@ async function getVehicle(id: string): Promise<Vehicle | null> {
 export default async function VehicleDetailPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  const { id } = params;
+  const { id } = await params;
 
   const vehicle = await getVehicle(id);
 
